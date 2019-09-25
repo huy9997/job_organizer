@@ -1,17 +1,11 @@
-import React from  'react'
-import {Route,BrowserRouter } from 'react-router-dom'
-import HelloWorld from '../screens/helloWorld'
-import FacebookLogin from '../screens/LoginFacebook'
-import GoogleLogin from '../screens/LoginGoogle'
+import React from "react";
+import { Route, BrowserRouter } from "react-router-dom";
+import job_dashboard from "../screens/job_dashboard";
 
-const Routes =()=>(
+const Routes = () => (
   <BrowserRouter>
-      <Route exact path="/" component={HelloWorld}/>
-      <Route exact path="/Loginfacebook" component={FacebookLogin}/>
-      <Route exact path="/Logingoogle" component={GoogleLogin}/>
-
-
+    <Route exact path="/" component={job_dashboard} />
   </BrowserRouter>
-)
+);
 
-export default Routes
+export default Routes;

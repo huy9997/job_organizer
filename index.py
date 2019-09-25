@@ -1,5 +1,4 @@
 from flask import Flask, jsonify
-from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pprint
@@ -7,13 +6,10 @@ import pprint
 app = Flask(__name__)
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return jsonify("get_row")
 
-@app.route('/test')
-def test():
-
-    pp = pprint.PrettyPrinter()
-
+@app.route('/googleData')
+def googleSheetsData():
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_name(
@@ -21,8 +17,8 @@ def test():
     client = gspread.authorize(creds)
 
     sheet = client.open('Software_Engineer_Applications').sheet1
-    get_all_values = sheet.get_all_values()
-    
-    return jsonify(get_all_values)
+    # get_all_values = sheet.get_all_values()
+    get_row = sheet.row_values(2)
+    return jsonify(get_row)
 if __name__ == '__main__':
     app.run()
